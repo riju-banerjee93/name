@@ -29,7 +29,7 @@ def makeWebhookResult(req):
     if req.get("result").get("action") != "user.query":
         return {}
 
-    speech = "sayantan"
+    speech = "Sayantan"
 
     print("Response:")
     print(speech)
