@@ -5,7 +5,12 @@ import os
 from flask import Flask
 from flask import request
 from flask import make_response
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
+scope = ['https://spreadsheets.google.com/feeds']
+creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
+client = gspread.authorize(creds)
 # Flask app should start in global layout
 app = Flask(__name__)
 
@@ -26,21 +31,23 @@ def webhook():
     return r
 
 def makeWebhookResult(req):
-    if req.get("result").get("action") != "user.query":
-        return {}
+    a = req.get("result").get("parameters").get("course")
+    if a == "data science" :
+        sheet = client.open("course sheet")
+        speech = "we offer"+str(sheet.cell(1,2).value)+"course at Rs."+str(sheet.cell(2,2).value)+".We cover"+str(sheet.cell(3,2).value)+"."+str(sheet.cell(4,2).value)+"is the trainer"
 
-    speech = "Sayantan"
+        return {
+            "speech": speech,
+            "displayText": speech,
+            # "data": {},
+            # "contextOut": [],
+            "source": "nothing"
+        }
 
-    print("Response:")
-    print(speech)
 
-    return {
-        "speech": speech,
-        "displayText": speech,
-        #"data": {},
-        # "contextOut": [],
-        "source": "nothing"
-    }
+
+
+
 
 
 if __name__ == '__main__':
