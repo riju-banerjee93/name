@@ -43,6 +43,17 @@ def makeWebhookResult(req):
             # "contextOut": [],
             "source": "nothing"
         }
+    if a == "visualization" :
+        sheet = client.open("course sheet").worksheet("Sheet1")
+        speech = "We offer"+str(sheet.cell(3,1).value)+"course at Rs."+str(sheet.cell(3,2).value)+".We cover"+str(sheet.cell(3,3).value)+"."+str(sheet.cell(3,4).value)+"is the trainer"
+
+        return {
+            "speech": speech,
+            "displayText": speech,
+            # "data": {},
+            # "contextOut": [],
+            "source": "nothing"
+        }
 
 
 
