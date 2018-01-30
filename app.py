@@ -34,7 +34,7 @@ def makeWebhookResult(req):
     a = req.get("result").get("parameters").get("course")
     if a == "data science" :
         sheet = client.open("course sheet").worksheet("Sheet1")
-        speech = "we offer"+str(sheet.cell(2,1).value)+"course at Rs."+str(sheet.cell(2,2).value)+".We cover"+str(sheet.cell(2,3).value)+"."+str(sheet.cell(2,4).value)+"is the trainer"
+        speech = "We offer"+str(sheet.cell(2,1).value)+"course at Rs."+str(sheet.cell(2,2).value)+".We cover"+str(sheet.cell(2,3).value)+"."+str(sheet.cell(2,4).value)+"is the trainer"
 
         return {
             "speech": speech,
