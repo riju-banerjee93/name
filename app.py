@@ -32,20 +32,19 @@ def webhook():
 
 def makeWebhookResult(req):
     a = req.get("result").get("parameters").get("course")
-    #if a == "data science" :
     sheet = client.open("course sheet").worksheet("Sheet1")
-        #speech = "We offer "+str(sheet.cell(2,1).value)+" course at Rs."+str(sheet.cell(2,2).value)+" .We cover"+str(sheet.cell(2,3).value)+"."+str(sheet.cell(2,4).value)+"is the trainer"
 
-    x = {"data science": sheet.range('A2:D2'), "visualisation": sheet.range('A3:D3')}
+    x = {"DATA SCIENCE": sheet.range('B2:J2'), "TABLEAU": sheet.range('B3:J3'),"BIG DATA HADOOP":sheet.range('B4:J4'),"ADVANCED ANALYTICS":sheet.range('B5:J5'),
+         "PROJECT MANAGEMENT PROFESSIONAL":sheet.range('B6:J6'),"AGILE CERTIFIED PROFESSIONAL":sheet.range('B7:J7'),"ITIL FOUNDATION":sheet.range('B8:J8'),
+         "ITIL INTERMEDIATE":sheet.range('B9:J9'),"PRINCE 2 FOUNDATION": sheet.range('B10:J10'),"PRINCE 2 PRACTITIONER":sheet.range('B11:J11'),
+         "LEAN SIX SIGMA GREEN BELT":sheet.range('B12:J12'),"LEAN SIX SIGMA BLACK BELT": sheet.range('B13:J13'),"CAPM": sheet.range('B14:J14'),
+         "MSP":sheet.range('B15:J15'),"Internet of Things":sheet.range('B16:J16'),"Amazon Web Servies": sheet.range('B17:J17')}
     list1 = []
     for cell in x[a]:
         list1.append(cell.value)
 
-    speech = "We offer " +list1[0]+ " for"
+    speech = "We offer " +list1[0]+ " course at a cost of Rs. "+list1[1]+" (excluding taxes). The training duaration is "+list1[7]+" hours. We provide"+list1[8]+" mode of training for this course."
 
-    #if a == "visualization" :
-       # sheet = client.open("course sheet").worksheet("Sheet1")
-        #speech = "We offer"+str(sheet.cell(3,1).value)+"course at Rs."+str(sheet.cell(3,2).value)+".We cover"+str(sheet.cell(3,3).value)+"."+str(sheet.cell(3,4).value)+"is the trainer"
 
     return {
         "speech": speech,
