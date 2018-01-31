@@ -36,14 +36,12 @@ def makeWebhookResult(req):
     sheet = client.open("course sheet").worksheet("Sheet1")
         #speech = "We offer "+str(sheet.cell(2,1).value)+" course at Rs."+str(sheet.cell(2,2).value)+" .We cover"+str(sheet.cell(2,3).value)+"."+str(sheet.cell(2,4).value)+"is the trainer"
 
-    x = {"data science": "A2:D2", "visualisation":"A3:D3"}
-    lst1 = []
-    all_cells = sheet.range(str(x[a]))
-    print(all_cells)
-    for cell in all_cells:
-        lst1.append(cell.value)
+    x = {"data science": sheet.range('A2:D2'), "visualisation": sheet.range('A3:D3')}
+    list1 = []
+    for cell in x[a]:
+        list1.append(cell.value)
 
-    speech = "We offer " +lst1[0]+ "course"
+    speech = "We offer " +list1[0]+ " for"
 
     #if a == "visualization" :
        # sheet = client.open("course sheet").worksheet("Sheet1")
