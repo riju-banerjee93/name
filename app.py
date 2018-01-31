@@ -38,7 +38,7 @@ def makeWebhookResult(req):
 
     x = {"data science": "A2:D2", "visualisation":"A3:D3"}
     lst1 = []
-    all_cells = sheet.range(x[a])
+    all_cells = sheet.range(str(x[a]))
     print(all_cells)
     for cell in all_cells:
         lst1.append(cell.value)
